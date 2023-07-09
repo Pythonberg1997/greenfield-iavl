@@ -1285,7 +1285,7 @@ func (tree *MutableTree) addOrphans(orphans []*Node) error {
 	return nil
 }
 
-func CloneMutableTree(t *MutableTree) *MutableTree {
+func CloneMutableTree(t *MutableTree, skipFastStorageUpgrade bool) *MutableTree {
 	if t == nil {
 		return nil
 	}
@@ -1305,7 +1305,7 @@ func CloneMutableTree(t *MutableTree) *MutableTree {
 		unsavedFastNodeAdditions: make(map[string]*fastnode.Node),
 		unsavedFastNodeRemovals:  make(map[string]interface{}),
 		ndb:                      t.ndb, // Share the same nodeDB
-		skipFastStorageUpgrade:   t.skipFastStorageUpgrade,
+		skipFastStorageUpgrade:   skipFastStorageUpgrade,
 	}
 
 	return clone
